@@ -9,8 +9,13 @@ const URI = process.env.MONGO_URI;
 const client = new MongoClient(URI);
 
 const connectDB = async () => {
-    await client.connect()
-    return client.db('task-list');
+    try {
+        await client.connect()
+        return client.db('task-list');
+
+    } catch (error) {
+        throw new error
+    }
 }
 
 
